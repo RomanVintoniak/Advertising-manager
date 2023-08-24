@@ -28,3 +28,4 @@ from datetime import datetime
 
 #adv = db.session.get(PurchasedAdvertising, 1)
 
+#test
