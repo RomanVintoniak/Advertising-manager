@@ -1,0 +1,14 @@
+{% extends 'baseForAdv.html' %}
+{% block content %}
+{% set channelID = channelID %}
+    <br>
+    <h2>Add Purchased Adv</h2>
+    <br>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        {{ form.date.label() }} <br> {{ form.date() }} <br><br>
+        {{ form.channelLink.label() }} <br> {{ form.channelLink() }} <br><br>
+        {{ form.price.label() }} <br> {{ form.price() }} <br><br>
+        {{ form.submit() }}
+    </form>
+{% endblock %}

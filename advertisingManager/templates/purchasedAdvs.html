@@ -1,0 +1,72 @@
+{% extends 'baseForAdv.html' %}
+{% block content %}
+{% set channelID = channelID %}
+    <br>
+    <h3 class="text-center">Придбана реклама</h3>
+    <br><br>
+    
+    <!-- <p><a href="{{ url_for('purchasedAdv.add', channelID = channelID) }}">add Purchased adv</a></p> -->
+
+    <div class="d-flex justify-content-end">
+      <div class="bg-light-green">
+        <h5>{{ totalPrice }}</h5>
+      </div>
+    </div>
+    
+    <br><br>
+
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Дата</th>
+          <th>Посиланян на канал</th>
+          <th>Ціна</th>
+          <th>Кільк. нових підп.</th>
+          <th><a href="{{ url_for('purchasedAdv.add', channelID = channelID) }}" class="link-success"><i class="bi bi-plus-square-fill fs-20"></i></a></th>
+        </tr>
+      </thead>
+      <tbody class="table-group-divider">
+    {% for purchasedAdv in purchasedAdvs %}
+        <tr>
+            <td class="bb">{{ purchasedAdv.date.strftime("%d.%m.%Y") }}</td>
+            <td class="bb"><a href="{{ purchasedAdv.channelLink }}" class="link-secondary">{{ purchasedAdv.channelLink }}</a></td>
+            <td class="bb">{{ purchasedAdv.price }}</td>
+            <td class="bb">{{ purchasedAdv.numberOfNewSubs }}</td>
+            <td class="bb">
+                <!-- <a href="{{ url_for('purchasedAdv.update', channelID = channelID, purchasedAdvID = purchasedAdv.id) }}" class="btn btn-warning">Update</a>
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deletePurchasedAdv{{purchasedAdv.id}}">
+                    Delete
+                </button> -->
+                
+                <a type="button" href="{{ url_for('purchasedAdv.update', channelID = channelID, purchasedAdvID = purchasedAdv.id) }}">
+                  <i class="bi bi-pencil fs-20 black"></i>
+                </a>
+                <a type="button" class="ml-5" data-bs-toggle="modal" data-bs-target="#deletePurchasedAdv{{purchasedAdv.id}}">
+                  <i class="bi bi-trash3-fill fs-20 red"></i>
+                </a>
+
+            </td>
+        </tr>
+
+        <div class="modal fade" id="deletePurchasedAdv{{purchasedAdv.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">Deleting</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Do u wanna delete ?
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <a href="{{ url_for('purchasedAdv.delete', channelID = channelID, purchasedAdvID = purchasedAdv.id)  }}" class="btn btn-danger">Delete</a>
+                </div>
+              </div>
+            </div>
+        </div>
+    {% endfor %}
+      </tbody>
+    </table>
+
+{% endblock %}

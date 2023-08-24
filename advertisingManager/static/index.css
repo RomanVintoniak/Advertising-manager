@@ -1,0 +1,29 @@
+table, th, td {
+    padding: 10px;
+}
+
+.test {
+    border: 1px solid;
+}
+
+.formBtn { width: 100%; }
+
+.white { color: white; }
+
+.black { color: black; }
+
+.red { color: red; }
+
+.ml-20 { margin-left: 20px; }
+
+.ml-5 { margin-left: 5px; }
+
+.fs-20 { font-size: 19px; }
+
+.bb { border-bottom: 1px solid rgb(173, 173, 173); }
+
+.bg-light-green {
+    background-color: rgb(168, 218, 168);
+    padding-right: 10px;
+    padding-left: 10px;
+}
